@@ -6,8 +6,8 @@ use App\Controllers\BaseController;
 
 class AdminController extends BaseController
 {
-    public function index()
+    public function login()
     {
-        echo 'admin';
+        return view('admin');
     }
 }

@@ -8,6 +8,6 @@ class UserController extends BaseController
 {
     public function index()
     {
-        echo 'user';
+        return view('userinterface');
     }
 }
