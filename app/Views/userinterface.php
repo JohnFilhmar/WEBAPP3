@@ -3,9 +3,7 @@
 <?= view('user/top'); ?>
 <body>
     <?= view('user/banner'); ?>
-    <?= view('user/fashion'); ?>
-    <?= view('user/electronics'); ?>
-    <?= view('user/jewelry'); ?>
+    <?= view('user/items'); ?>
     <?= view('user/footer'); ?>
 </body>
 </html>
