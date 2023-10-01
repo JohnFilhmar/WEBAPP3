@@ -13,7 +13,7 @@ class CategoryModel extends Model
     protected $returnType       = 'array';
     protected $useSoftDeletes   = false;
     protected $protectFields    = true;
-    protected $allowedFields    = ['id','name'];
+    protected $allowedFields    = ['id','catname'];
 
     // Dates
     protected $useTimestamps = false;

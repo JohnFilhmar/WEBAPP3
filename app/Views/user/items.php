@@ -4,8 +4,8 @@
          <?php foreach($category as $c): ?>
          <div class="carousel-inner">
             <div class="carousel-item active">
-                  <div class="container">wwwwwwww
-                     <h1 class="fashion_taital"><?= $c['name'];?></h1>
+                  <div class="container">
+                     <h1 class="fashion_taital"><?= $c['catname'];?></h1>
                      <div class="fashion_section_2">
                         <div class="row">
                               <?php $instance = 0; ?>
@@ -20,7 +20,7 @@
                                     <div class="btn_main">
                                        <form method="post" action="/buyitem">
                                           <input type="hidden" name="product_id" value="<?= $p['id']; ?>">
-                                          <div class="buy_bt"><button type="submit"><?= $instance ; ?>Buy Now</button></div>
+                                          <div class="btn buy_bt"><button type="submit" class="btn btn-warning btn-block">Buy Now</button></div>
                                        </form>
                                        <div class="seemore_bt"><a href="#">See More</a></div>
                                     </div>
@@ -34,12 +34,6 @@
                   </div>
                </div>
          </div><br>
-         <a class="carousel-control-prev" href="#main_slider" role="button" data-slide="prev">
-               <i class="fa fa-angle-left"></i>
-         </a>
-         <a class="carousel-control-next" href="#main_slider" role="button" data-slide="next">
-               <i class="fa fa-angle-right"></i>
-         </a>
          <?php endforeach;?>
-   </div>
+   </div><br><br>
 </div>
