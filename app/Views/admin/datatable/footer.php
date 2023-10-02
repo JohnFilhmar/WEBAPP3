@@ -21,6 +21,16 @@
 <script src="<?= base_url(); ?>admin/dist/js/adminlte.min.js"></script>
 <script src="<?= base_url(); ?>admin/plugins/bs-custom-file-input/bs-custom-file-input.min.js"></script>
 <script>
+  $(document).ready(function() {
+  $('#formmodal').modal('show');
+  });
+  $(document).ready(function() {
+  $('#closeModalButton').click(function() {
+  window.location.href = '/administrator';
+  });
+  });
+</script>
+<script>
 $(function () {
   bsCustomFileInput.init();
 });

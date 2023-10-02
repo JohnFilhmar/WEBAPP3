@@ -29,7 +29,7 @@
                 <td><?= $p['quantity']; ?></td>
                 <td style="text-align: center;">
                     <a class="btn btn-danger col-sm-4" href="/deleteitem/<?= $p['id'] ?>"> Delete</a>
-                    <a class="btn btn-success col-sm-4" href="/edititem/<?= $p['id'] ?>">Edit</a>
+                    <a class="btn btn-success col-sm-4 open-modal" href="/edititem/<?= $p['id'] ?>">Edit</a>
                 </td>
             </tr>
                 <?php endforeach; ?>
