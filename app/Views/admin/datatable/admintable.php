@@ -24,7 +24,13 @@
             <tr>
                 <td><?= $p['name']; ?></td>
                 <td><?= $p['description']; ?></td>
-                <td><?= $p['category']; ?></td>
+                <td>
+                    <?php foreach($category as $c): ?>
+                        <?php if($p['category'] == $c['id']){
+                            echo $c['catname'];
+                        } ?>
+                    <?php endforeach; ?>
+                </td>
                 <td><?= $p['price']; ?></td>
                 <td><?= $p['quantity']; ?></td>
                 <td style="text-align: center;">

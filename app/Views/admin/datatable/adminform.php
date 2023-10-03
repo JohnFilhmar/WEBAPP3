@@ -19,7 +19,7 @@
         </div>
     </div>
     <div class="card-body modal-body">
-        <form action="/submitform<?= (isset($toedit['id']))? "/" . $toedit['id'] : ""?>" method="post" enctype="multipart/form-data" id="adminform">
+        <form action="/addproduct" method="post" enctype="multipart/form-data" id="adminform">
             <div class="row">
                 <div class="col-sm-6">
                     <div class="form-group">
@@ -67,7 +67,7 @@
                 <label for="exampleInputFile">Upload an Image :</label>
                 <div class="input-group">
                   <div class="custom-file">
-                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept=".png">
+                    <input type="file" name="image" class="custom-file-input" id="exampleInputFile" accept=".png" required>
                     <label class="custom-file-label" for="exampleInputFile"><?= isset($toedit['image'])? $toedit['image'] . ".png" : "Choose a .png file" ?></label>
                   </div>
                   <div class="input-group-append">

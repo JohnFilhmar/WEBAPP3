@@ -17,7 +17,6 @@ class AdminController extends BaseController
     public function gotoregister()
     {
         helper(['form']);
-        $data = [];
         return view('adminregister');
     }
     public function administrator()
@@ -33,7 +32,6 @@ class AdminController extends BaseController
             'cat' => [],
         ];
         $data = array_merge($userdata, $catdata);
-
         helper(['form']);
         return view('administrator', $data);
     }
@@ -107,6 +105,48 @@ class AdminController extends BaseController
             } elseif ($datcat == 'Jewelry') {
                 $valcat = 3;
             }
+            $file = $this->request->getFile('image');
+            $filename = pathinfo($file->getName(), PATHINFO_FILENAME);
+        
+            $datatoadd = [
+                'name' => $data['name'],
+                'category' => $valcat,
+                'description' => $data['description'],
+                'price' => $data['price'],
+                'quantity' => $data['quantity'],
+                'image' => $filename,
+            ];
+        
+            if ($file->isValid() && !$file->hasMoved()) {
+                $file->move('./products/images');
+            } else {
+                unset($datatoadd['image']);
+            }
+            $user->set($datatoadd)->where('id', $id)->update();
+        
+            return redirect()->to('/administrator');
+        }
+    }
+    public function addproduct(){        
+        $user = new UserModel();
+        $data = [
+            'name' => $this->request->getVar('name'),
+            'description' => $this->request->getVar('description'),
+            'price' => $this->request->getVar('price'),
+            'quantity' => $this->request->getVar('quantity')
+        ];
+
+        if ($this->request->getMethod() == 'post') {
+            $datcat = $this->request->getVar('category');
+            $valcat = 0;
+
+            if ($datcat == 'Wears') {
+                $valcat = 1;
+            } elseif ($datcat == 'Electronics') {
+                $valcat = 2;
+            } elseif ($datcat == 'Jewelry') {
+                $valcat = 3;
+            }
 
             $rules = [
                 'image' => 'uploaded[image]'
@@ -124,12 +164,7 @@ class AdminController extends BaseController
                     'quantity' => $data['quantity'],
                     'image' => $filename,
                 ];
-
-                if (isset($id)) {
-                    $user->set($datatoadd)->where('id', $id)->update();
-                } else {
-                    $user->save($datatoadd);
-                }
+                $user->save($datatoadd);
 
                 if ($file->isValid() && !$file->hasMoved()) {
                     $file->move('./products/images');
@@ -145,6 +180,12 @@ class AdminController extends BaseController
         $record = $user->find($id);
         if($record != null){
             $user->delete($id);
+            
+            $filename = $record['image'];
+            $filePath = './products/images/' . $filename . '.png';
+            if (file_exists($filePath)) {
+                unlink($filePath);
+            }
             return redirect()->to('/administrator');
         }else{
             return "Record not found";
